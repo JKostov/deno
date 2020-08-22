@@ -1,4 +1,4 @@
-import { Router, send } from 'https://deno.land/x/oak/mod.ts';
+import { Router } from '../deps.ts';
 
 const books = new Map<string, any>();
 books.set('1', {
@@ -9,7 +9,9 @@ books.set('1', {
 
 const router = new Router();
 
-router.get('/', () => context.response.body = { test: 'asd' });
+router.get('/', (context) => {
+    context.response.body = {test: 'asd'}
+});
 
 router.get('/book', (context) => {
     context.response.body = Array.from(books.values());
