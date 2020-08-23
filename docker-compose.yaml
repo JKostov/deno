@@ -1,0 +1,12 @@
+version: "3.7"
+
+services:
+  deno-postgres:
+    image: postgres:12.1-alpine
+    container_name: deno-postgres
+    ports:
+      - "5000:5432"
+    environment:
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_DB=deno-todo
