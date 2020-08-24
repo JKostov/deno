@@ -17,8 +17,4 @@ export default class Todo extends Model {
   static defaults = {
     done: false,
   };
-
-  // static user() {
-  //   return this.hasOne(User);
-  // };
 }

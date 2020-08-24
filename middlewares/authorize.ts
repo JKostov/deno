@@ -1,4 +1,5 @@
 import { Status, validateJwt } from '../deps.ts';
+import User from '../models/user.ts'
 
 export default async (ctx: any, next: any) => {
   const authHeader = ctx.request.headers.get('authorization');
@@ -6,7 +7,7 @@ export default async (ctx: any, next: any) => {
   if (!authHeader) {
     ctx.throw(Status.Unauthorized, 'Access Token Missing!');
   } else {
-    const token = authHeader.split('')[1];
+    const token = authHeader.split(' ')[1];
 
     try {
       const key: string = Deno.env.get('TOKEN_SECRET') ||
@@ -14,7 +15,14 @@ export default async (ctx: any, next: any) => {
 
       const { payload }: any = await validateJwt(token, key);
 
-      ctx.request.user = payload;
+      const user = await User.where({ id: payload.id, email: payload.email }).first();
+
+      if (!user) {
+        ctx.throw(Status.Unauthorized);
+      }
+
+      delete user.password;
+      ctx.request.user = user;
 
       await next();
     } catch (err) {
