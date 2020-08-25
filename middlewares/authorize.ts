@@ -23,10 +23,10 @@ export default async (ctx: any, next: any) => {
 
       delete user.password;
       ctx.request.user = user;
-
-      await next();
     } catch (err) {
       ctx.throw(Status.Unauthorized);
     }
+
+    await next();
   }
 };

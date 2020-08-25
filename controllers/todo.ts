@@ -43,15 +43,19 @@ export async function updateTodo(ctx: any) {
   const todo = await Todo.where({ id: todoId, userId: user.id }).first();
 
   if (!todo) {
-    return ctx.throw(Status.BadRequest, 'Todo not found');
+    ctx.throw(Status.BadRequest, 'Todo not found');
   }
 
-  todo.done = data.done;
-  todo.name = data.name;
-  todo.description = data.description;
+  todo.done = data.done ? data.done : false;
+  if (data.name) {
+    todo.name = data.name;
+  }
+  if (data.description) {
+    todo.description = data.description;
+  }
   todo.at = data.at;
 
-  await todo.save();
+  await todo.update();
 
   ctx.response.status = Status.OK;
   ctx.response.type = 'json';
