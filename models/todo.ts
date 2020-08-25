@@ -1,8 +1,8 @@
-import { Model, DataTypes, Relationships } from '../deps.ts';
-import User from './user.ts';
+import { Model, DataTypes, Relationships } from "../deps.ts";
+import User from "./user.ts";
 
 export default class Todo extends Model {
-  static table = 'todos';
+  static table = "todos";
   static timestamps = true;
 
   static fields = {

@@ -1,4 +1,4 @@
-import { Schema, string, boolean } from '../deps.ts';
+import { Schema, string, boolean } from "../deps.ts";
 
 export default Schema({
   name: string.trim().normalize().between(2, 60).optional(),

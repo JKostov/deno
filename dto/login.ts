@@ -1,4 +1,4 @@
-import { Schema, string } from '../deps.ts';
+import { Schema, string } from "../deps.ts";
 
 export default Schema({
   email: string.regexp(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/),

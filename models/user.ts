@@ -1,7 +1,7 @@
-import { Model, DataTypes } from '../deps.ts';
+import { Model, DataTypes } from "../deps.ts";
 
 export default class User extends Model {
-  static table = 'users';
+  static table = "users";
   static timestamps = true;
 
   static fields = {

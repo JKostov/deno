@@ -1,4 +1,4 @@
-import { Schema, string } from '../deps.ts';
+import { Schema, string } from "../deps.ts";
 
 export default Schema({
   firstName: string.trim().normalize().between(3, 60),
